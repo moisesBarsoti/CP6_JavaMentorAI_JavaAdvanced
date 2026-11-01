@@ -5,6 +5,7 @@ import br.com.fiap.javamentorai.dto.response.ChatHistoryResponse;
 import br.com.fiap.javamentorai.dto.response.ChatResponse;
 import br.com.fiap.javamentorai.entity.ChatHistory;
 import br.com.fiap.javamentorai.repository.ChatHistoryRepository;
+import br.com.fiap.javamentorai.exception.AiProviderException;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.beans.factory.annotation.Value;
@@ -54,14 +55,24 @@ public class ChatService {
 
         String question = request.mensagem().trim();
 
-        String answer = chatClient.prompt()
-                .system(SYSTEM_PROMPT)
-                .user(question)
-                .call()
-                .content();
+        String answer;
+
+        try {
+            answer = chatClient.prompt()
+                    .system(SYSTEM_PROMPT)
+                    .user(question)
+                    .call()
+                    .content();
+
+        } catch (RuntimeException exception) {
+            throw new AiProviderException(
+                    "Não foi possível estabelecer comunicação com o provedor de IA.",
+                    exception
+            );
+        }
 
         if (answer == null || answer.isBlank()) {
-            throw new IllegalStateException("O provedor de IA não retornou uma resposta.");
+            throw new AiProviderException("O provedor de IA não retornou uma resposta.");
         }
 
         ChatHistory history = new ChatHistory();
