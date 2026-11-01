@@ -726,7 +726,7 @@ docker logs javamentor-db
 
 ### Vídeo demonstrativo
 
-**Link:** `link do video daqui a pouco`
+**Link:** https://www.youtube.com/watch?v=7AuZLy_I6Hw
 
 ### Repositório GitHub
 
