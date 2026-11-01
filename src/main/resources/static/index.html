@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JavaMentor AI | Assistente de Estudos</title>
+
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js" defer></script>
+</head>
+<body>
+
+<div class="app-container">
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2>JavaMentor AI</h2>
+            <p>Seu assistente de estudos Java</p>
+        </div>
+
+        <button id="historyButton" type="button">
+            Atualizar histórico
+        </button>
+
+        <div id="historyList" class="history-list">
+            <p>Nenhuma conversa encontrada.</p>
+        </div>
+    </aside>
+
+    <main class="chat-container">
+
+        <header class="chat-header">
+            <h1>JavaMentor AI</h1>
+            <p>
+                Aprenda Java, Spring Boot e programação
+                com inteligência artificial.
+            </p>
+        </header>
+
+        <section
+                id="chatMessages"
+                class="chat-messages"
+                aria-live="polite"
+        >
+            <div class="welcome-message">
+                <h2>Olá! Como posso ajudar?</h2>
+
+                <p>
+                    Envie uma pergunta sobre Java,
+                    orientação a objetos ou Spring Boot.
+                </p>
+            </div>
+        </section>
+
+        <form id="chatForm" class="chat-form">
+
+            <label for="messageInput">
+                Sua pergunta
+            </label>
+
+            <textarea
+                    id="messageInput"
+                    name="mensagem"
+                    placeholder="Digite sua pergunta sobre Java..."
+                    maxlength="2000"
+                    rows="3"
+                    required
+            ></textarea>
+
+            <div class="form-actions">
+                <span id="characterCount">0 / 2000</span>
+
+                <button id="sendButton" type="submit">
+                    Enviar pergunta
+                </button>
+            </div>
+
+            <p id="statusMessage" role="status"></p>
+
+        </form>
+
+    </main>
+
+</div>
+
+</body>
+</html>
