@@ -1,4 +1,13 @@
 package br.com.fiap.javamentorai.dto.response;
 
-public class ChatResponse {
-}
+import java.time.LocalDateTime;
+
+public record ChatResponse(
+
+        Long id,
+        String resposta,
+        String provedor,
+        String modelo,
+        LocalDateTime dataHora
+
+) {}
