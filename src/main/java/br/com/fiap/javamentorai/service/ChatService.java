@@ -1,6 +1,7 @@
 package br.com.fiap.javamentorai.service;
 
 import br.com.fiap.javamentorai.dto.request.ChatRequest;
+import br.com.fiap.javamentorai.dto.response.ChatHistoryResponse;
 import br.com.fiap.javamentorai.dto.response.ChatResponse;
 import br.com.fiap.javamentorai.entity.ChatHistory;
 import br.com.fiap.javamentorai.repository.ChatHistoryRepository;
@@ -8,6 +9,8 @@ import br.com.fiap.javamentorai.repository.ChatHistoryRepository;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ChatService {
@@ -77,5 +80,19 @@ public class ChatService {
                 savedHistory.getModel(),
                 savedHistory.getCreatedAt()
         );
+    }
+
+    public List<ChatHistoryResponse> getHistory() {
+
+        return repository.findAllByOrderByCreatedAtDesc()
+                .stream()
+                .map(history -> new ChatHistoryResponse(
+                        history.getId(),
+                        history.getQuestion(),
+                        history.getAnswer(),
+                        history.getProvider(),
+                        history.getModel(),
+                        history.getCreatedAt()
+                )).toList();
     }
 }
