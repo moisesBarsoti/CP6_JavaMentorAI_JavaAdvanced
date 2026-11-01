@@ -114,8 +114,6 @@ Resources
 
 A implementação utiliza **injeção de dependências**, **Service Layer**, **Repository Pattern** por meio do Spring Data JPA, **DTOs** e **tratamento centralizado de exceções**.
 
-> Esta organização é uma arquitetura em camadas dentro de uma aplicação Spring Boot. Não se trata de uma implementação formal de Clean Architecture com módulos independentes.
-
 ---
 
 ## 🧭 Diagrama de Arquitetura
