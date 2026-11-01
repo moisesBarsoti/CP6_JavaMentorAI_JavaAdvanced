@@ -60,4 +60,19 @@ public class GlobalExceptionHandler {
 
         return problem;
     }
+
+    @ExceptionHandler(AiProviderException.class)
+    public ProblemDetail handleAiProviderException(
+            AiProviderException exception
+    ) {
+
+        ProblemDetail problem = ProblemDetail.forStatusAndDetail(
+                HttpStatus.SERVICE_UNAVAILABLE,
+                exception.getMessage()
+        );
+
+        problem.setTitle("Provedor de IA indisponível");
+
+        return problem;
+    }
 }
